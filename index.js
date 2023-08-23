@@ -45,7 +45,7 @@ Vehicle.prototype.valueOf = function() {return this.mileage};
 function Car(brand, model, year, mileage, fuelType, speed) {
   // Викликаємо конструктор Vehicle за допомогою apply, передаємо в нього this, [brand, model, year, mileage].
   //  Записуєм в this.fuelType значення аргументу fuelType, в this.speed значення аргументу speed
-  this.prototype = Vehicle.apply(this, [brand, model, year, mileage]);
+  Vehicle.apply(this, [brand, model, year, mileage]);
   this.fuelType = fuelType;
   this.speed = speed;
 }
@@ -115,7 +115,7 @@ console.log(car.brake(20));
 // Конструктор Truck наслідуємо Vehicle викликавши його в конструкторі з call
 function Truck(brand, model, year, mileage, color, engineType, towingCapacity, fuelType, transmissionType, doors, weight) {
   // Викликаємо Vehicle.call та передаємо в нього: this, brand, model, year, mileage
-  this.prototype = Vehicle.call(this, [brand, model, year, mileage]);
+  Vehicle.call(this, brand, model, year, mileage);
 
   //  Записуєм в this.color значення аргументу color, в this.engineType значення аргументу engineType і так далі зі всіми аргументами
   this.color = color;
@@ -190,8 +190,7 @@ function ElectricCar(brand, model, year, mileage, batteryCapacity) {
     console.error(`Конструктор має бути викликаний з 'new'`);
   }
 
-  // this.prototype = Car.call(this, [brand, model, year, mileage]);
-  Car.call(this, [brand, model, year, mileage]);
+  Car.call(this, brand, model, year, mileage);
   this.batteryCapacity = batteryCapacity;
 }
 
