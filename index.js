@@ -187,7 +187,7 @@ function ElectricCar(brand, model, year, mileage, batteryCapacity) {
   // Викликаємо Car.call та передаємо в нього this, brand, model, year, mileage
   //  Записуєм в this.batteryCapacity значення аргументу batteryCapacity
   if (!new.target) {
-    console.error(`Конструктор має бути викликаний з 'new'`);
+    throw new Error(`Конструктор має бути викликаний з 'new'`);
   }
 
   Car.call(this, brand, model, year, mileage);
